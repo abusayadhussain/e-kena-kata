@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const { objectId } = mongoose.Schema;
+const { ObjectId } = mongoose.Schema;
 
 const productSchema = new mongoose.Schema(
   {
@@ -21,7 +21,7 @@ const productSchema = new mongoose.Schema(
       maxLength: 32,
     },
     category: {
-      type: objectId,
+      type: ObjectId,
       ref: "Category",
       required: true,
     },
