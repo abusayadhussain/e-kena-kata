@@ -152,6 +152,40 @@ exports.list = (req, res) => {
           error: "No Products found!",
         });
       }
-      res.send(products);
+      res.json(products);
     });
+};
+
+/**
+ * will return the product based on the category it related to
+ */
+
+exports.listRelated = (req, res) => {
+  let limit = req.query.limit ? parseInt(req.query.limit) : 10;
+
+  Product.find({
+    _id: { $ne: req.product },
+    category: req.product.category,
+  })
+    .populate("category", "_id, name")
+    .limit(limit)
+    .exec((err, products) => {
+      if (err) {
+        return res.status(400).json({
+          error: "No Products found!",
+        });
+      }
+      res.json(products);
+    });
+};
+
+exports.listCategories = (req, res) => {
+  Product.distinct("category", {}, (err, categories) => {
+    if (err) {
+      return res.status(400).json({
+        error: "No Categories found!",
+      });
+    }
+    res.json(categories);
+  });
 };
