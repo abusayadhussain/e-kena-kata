@@ -32,8 +32,8 @@ const Home = ()=>{
     }
 
     useEffect(() => {
-        loadProductsBySell() 
         loadProductsByArrival()
+        loadProductsBySell() 
     }, []);
 
     return (
