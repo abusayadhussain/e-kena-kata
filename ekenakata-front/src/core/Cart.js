@@ -9,14 +9,14 @@ const Cart = () => {
 
     useEffect(()=> {
         setItems(getCart())
-    }, []);
+    }, [items]);
 
     const showItems = items => {
         return(
             <div>
                  <h2>Your cart has {`${items.length}`} items</h2>
                  <hr/>
-                 {items.map((product,i)=>(<Card key={i} product={product} showAddToCartButton={false} cartUpdate={true}/>))}
+                 {items.map((product,i)=>(<Card key={i} product={product} showAddToCartButton={false} cartUpdate={true} showRemoveProductButton={true}/>))}
             </div>
         )
     }
